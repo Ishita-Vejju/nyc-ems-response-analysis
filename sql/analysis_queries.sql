@@ -1,0 +1,2 @@
+-- TODO Day 5-7: 8-10 queries
+-- Must include: JOIN, GROUP BY, HAVING, subquery, one window function (RANK/ROW_NUMBER)

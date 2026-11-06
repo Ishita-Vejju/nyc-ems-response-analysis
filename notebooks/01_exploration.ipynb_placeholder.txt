@@ -1,0 +1,26 @@
+# 01_exploration.ipynb — starter code (copy into a notebook cell)
+
+import pandas as pd
+import numpy as np
+
+URL = ("https://data.cityofnewyork.us/resource/76xm-jjuj.csv"
+       "?$where=borough='BROOKLYN' AND incident_datetime between "
+       "'2026-06-01T00:00:00' AND '2026-07-01T00:00:00'")
+
+df_raw = pd.read_csv(URL)
+df_raw.to_csv("../data/raw/ems_raw.csv", index=False)   # save raw, never edit
+df = df_raw.copy()
+
+df.shape
+df.head(10)
+df.info()                                    # flag wrong dtypes
+df.describe(include='all').T
+
+missing = df.isna().sum().sort_values(ascending=False)
+pd.DataFrame({'count': missing, 'pct': (missing/len(df)*100).round(2)}).head(15)
+
+df.duplicated().sum()
+
+# inconsistent text in categorical columns
+for col in df.select_dtypes(include='object').columns:
+    print(col, '|', df[col].nunique(), '|', df[col].dropna().unique()[:10])

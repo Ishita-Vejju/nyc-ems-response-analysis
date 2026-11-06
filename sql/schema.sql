@@ -1,0 +1,2 @@
+-- TODO Day 5: design 2-3 related tables here
+-- e.g. incidents (fact), call_types (dimension), stations/boroughs (dimension)
